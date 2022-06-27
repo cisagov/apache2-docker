@@ -1,53 +1,51 @@
-# skeleton-docker 💀🐳 #
+# apache2-docker 🍂🐳 #
 
-[![GitHub Build Status](https://github.com/cisagov/skeleton-docker/workflows/build/badge.svg)](https://github.com/cisagov/skeleton-docker/actions/workflows/build.yml)
-[![CodeQL](https://github.com/cisagov/skeleton-docker/workflows/CodeQL/badge.svg)](https://github.com/cisagov/skeleton-docker/actions/workflows/codeql-analysis.yml)
-[![Known Vulnerabilities](https://snyk.io/test/github/cisagov/skeleton-docker/badge.svg)](https://snyk.io/test/github/cisagov/skeleton-docker)
+[![GitHub Build Status](https://github.com/xvxd4sh/megazord-http-redirector-docker/workflows/build/badge.svg)](https://github.com/xvxds4h/megazord-http-redirector-docker/actions/workflows/build.yml)
+[![CodeQL](https://github.com/xvxd4sh/megazord-http-redirector-docker/workflows/CodeQL/badge.svg)](https://github.com/xvxd4sh/megazord-http-redirector-docker/actions/workflows/codeql-analysis.yml)
+[![Known Vulnerabilities](https://snyk.io/test/github/xvxd4sh/megazord-http-redirector-docker/badge.svg)](https://snyk.io/test/github/xvxd4sh/megazord-http-redirector-docker)
 
 ## Docker Image ##
 
-[![Docker Pulls](https://img.shields.io/docker/pulls/cisagov/example)](https://hub.docker.com/r/cisagov/example)
-[![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/cisagov/example)](https://hub.docker.com/r/cisagov/example)
-[![Platforms](https://img.shields.io/badge/platforms-amd64%20%7C%20arm%2Fv6%20%7C%20arm%2Fv7%20%7C%20arm64%20%7C%20ppc64le%20%7C%20s390x-blue)](https://hub.docker.com/r/cisagov/skeleton-docker/tags)
+[![Docker Pulls](https://img.shields.io/docker/pulls/xvxd4sh/apache2)](https://hub.docker.com/r/xvxd4sh/apache2)
+[![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/xvxd4sh/apache2)](https://hub.docker.com/r/xvxd4sh/apache2)
+[![Platforms](https://img.shields.io/badge/platforms-amd64%20%7C%20arm%2Fv6%20%7C%20arm%2Fv7%20%7C%20arm64%20%7C%20ppc64le%20%7C%20s390x-blue)](https://hub.docker.com/r/xvxd4sh/apache2/tags)
 
-This is a Docker skeleton project that can be used to quickly get a
-new [cisagov](https://github.com/cisagov) GitHub Docker project
-started.  This skeleton project contains [licensing
-information](LICENSE), as well as [pre-commit hooks](https://pre-commit.com)
-and [GitHub Actions](https://github.com/features/actions) configurations
-appropriate for Docker containers and the major languages that we use.
+This is a docker project that is used to spin up an apache2 web server.
 
 ## Running ##
 
 ### Running with Docker ###
 
-To run the `cisagov/example` image via Docker:
+To run the `xvxd4sh/apache2` image via Docker:
 
 ```console
-docker run cisagov/example:0.0.1
+docker run xvxd4sh/apache2:latest
 ```
 
 ### Running with Docker Compose ###
 
-1. Create a `docker-compose.yml` file similar to the one below to use [Docker Compose](https://docs.docker.com/compose/).
+1. Use the `docker-compose.yml` file similar to the one below to use [Docker Compose](https://docs.docker.com/compose/).
 
     ```yaml
     ---
     version: "3.7"
 
     services:
-      example:
-        image: cisagov/example:0.0.1
-        volumes:
-          - type: bind
-            source: <your_log_dir>
-            target: /var/log
-        environment:
-          - ECHO_MESSAGE="Hello from docker compose"
-        ports:
-          - target: 8080
-            published: 8080
-            protocol: tcp
+      http-redirector:
+        build:
+          context: .
+          dockerfile: Dockerfile
+      image: xvxd4sh/apache2
+      init: true
+      restart: "no"
+      ports:
+        - '80:80'
+        - '443:443'
+      volumes:
+        - ./src/templates/:/var/www/html
+        - ./src/uploads/:/var/www/uploads/
+        - ./src/config/apache2.conf:/etc/apache2/apache2.conf
+        - ./src/config/000-default.conf:/etc/apache2/sites-available/000-default.conf
     ```
 
 1. Start the container and detach:
@@ -55,7 +53,7 @@ docker run cisagov/example:0.0.1
     ```console
     docker compose up --detach
     ```
-
+<!--
 ## Using secrets with your container ##
 
 This container also supports passing sensitive values via [Docker
@@ -97,6 +95,7 @@ environment variables.  See the
           - source: quote_txt
             target: quote.txt
     ```
+-->
 
 ## Updating your container ##
 
@@ -125,11 +124,12 @@ environment variables.  See the
 1. Pull the new image:
 
     ```console
-    docker pull cisagov/example:0.0.1
+    docker pull xvxd4sh/apache2:latest
     ```
 
 1. Recreate and run the container by following the [previous instructions](#running-with-docker).
 
+<!--
 ## Image tags ##
 
 The images of this container are tagged with [semantic
@@ -148,12 +148,15 @@ containerize.  It is recommended that most users use a version tag (e.g.
 
 See the [tags tab](https://hub.docker.com/r/cisagov/example/tags) on Docker
 Hub for a list of all the supported tags.
+-->
 
 ## Volumes ##
 
-| Mount point | Purpose        |
-|-------------|----------------|
-| `/var/log`  |  Log storage   |
+|  Mount point    | Purpose                            |
+|-----------------|------------------------------------|
+| `/src/uploads`  |  Payload uploads                   |
+| `/src/templates`|  webroot of the apache2 web server |
+| `/src/config`   |  configuration of the server       |
 
 ## Ports ##
 
@@ -161,13 +164,14 @@ The following ports are exposed by this container:
 
 | Port | Purpose        |
 |------|----------------|
-| 8080 | Example only; nothing is actually listening on the port |
+|  80  |      http      |
+| 443  |      https     |
 
 The sample [Docker composition](docker-compose.yml) publishes the
-exposed port at 8080.
-
+exposed port at 80 & 443.
+<!--
 ## Environment variables ##
-
+-->
 ### Required ###
 
 There are no required environment variables.
@@ -177,7 +181,7 @@ There are no required environment variables.
 |-------|---------|---------|
 | `REQUIRED_VARIABLE` | Describe its purpose. | `null` |
 -->
-
+<!--
 ### Optional ###
 
 | Name  | Purpose | Default |
@@ -200,7 +204,7 @@ docker build \
   --tag cisagov/example:0.0.1 \
   https://github.com/cisagov/example.git#develop
 ```
-
+-->
 ## Cross-platform builds ##
 
 To create images that are compatible with other platforms, you can use the
@@ -211,8 +215,8 @@ Docker:
    or the command line:
 
     ```console
-    git clone https://github.com/cisagov/example.git
-    cd example
+    git clone https://github.com/xvxd4sh/megazord-http-redirector-docker.git
+    cd megazord-http-redirector-docker
     ```
 
 1. Create the `Dockerfile-x` file with `buildx` platform support:
@@ -227,11 +231,10 @@ Docker:
     docker buildx build \
       --file Dockerfile-x \
       --platform linux/amd64 \
-      --build-arg VERSION=0.0.1 \
       --output type=docker \
-      --tag cisagov/example:0.0.1 .
+      --tag xvxd4sh/apache2:latest.
     ```
-
+<!--
 ## New repositories from a skeleton ##
 
 Please see our [Project Setup guide](https://github.com/cisagov/development-guide/tree/develop/project_setup)
@@ -243,7 +246,7 @@ new repository!
 
 We welcome contributions!  Please see [`CONTRIBUTING.md`](CONTRIBUTING.md) for
 details.
-
+-->
 ## License ##
 
 This project is in the worldwide [public domain](LICENSE).
