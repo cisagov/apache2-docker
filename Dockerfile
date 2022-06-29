@@ -21,7 +21,5 @@ RUN apt-get install -y ssl-cert && \
 a2enmod rewrite headers cache && a2dismod -f deflate && \
 a2enmod ssl && a2ensite default-ssl.conf
 
-CMD echo "Apache2 started"
-
 # WORKDIR ${CISA_HOME}
 # USER cisa
