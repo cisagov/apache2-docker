@@ -215,8 +215,8 @@ Docker:
    or the command line:
 
     ```console
-    git clone https://github.com/xvxd4sh/megazord-http-redirector-docker.git
-    cd megazord-http-redirector-docker
+    git clone https://github.com/xvxd4sh/apache2-docker.git
+    cd apache2-docker
     ```
 
 1. Create the `Dockerfile-x` file with `buildx` platform support:
