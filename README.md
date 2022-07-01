@@ -1,8 +1,8 @@
 # apache2-docker 🍂🐳 #
 
-[![GitHub Build Status](https://github.com/xvxd4sh/megazord-http-redirector-docker/workflows/build/badge.svg)](https://github.com/xvxds4h/megazord-http-redirector-docker/actions/workflows/build.yml)
-[![CodeQL](https://github.com/xvxd4sh/megazord-http-redirector-docker/workflows/CodeQL/badge.svg)](https://github.com/xvxd4sh/megazord-http-redirector-docker/actions/workflows/codeql-analysis.yml)
-[![Known Vulnerabilities](https://snyk.io/test/github/xvxd4sh/megazord-http-redirector-docker/badge.svg)](https://snyk.io/test/github/xvxd4sh/megazord-http-redirector-docker)
+[![GitHub Build Status](https://github.com/xvxd4sh/apache2-docker/workflows/build/badge.svg)](https://github.com/xvxds4h/apache2-docker/actions/workflows/build.yml)
+[![CodeQL](https://github.com/xvxd4sh/megazord-http-redirector-docker/workflows/CodeQL/badge.svg)](https://github.com/xvxd4sh/apache2-docker/actions/workflows/codeql-analysis.yml)
+[![Known Vulnerabilities](https://snyk.io/test/github/xvxd4sh/megazord-http-redirector-docker/badge.svg)](https://snyk.io/test/github/xvxd4sh/apache2-docker)
 
 ## Docker Image ##
 
@@ -80,7 +80,7 @@ environment variables.  See the
 
     services:
       example:
-        image: cisagov/example:0.0.1
+        image: xvxd4sh/apache2
         volumes:
           - type: bind
             source: <your_log_dir>
@@ -202,7 +202,7 @@ Build the image locally using this git repository as the [build context](https:/
 docker build \
   --build-arg VERSION=0.0.1 \
   --tag cisagov/example:0.0.1 \
-  https://github.com/cisagov/example.git#develop
+  https://github.com/xvxd4sh/apache2-docker.git#develop
 ```
 -->
 ## Cross-platform builds ##
