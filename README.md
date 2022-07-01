@@ -1,8 +1,8 @@
 # apache2-docker 🍂🐳 #
 
 [![GitHub Build Status](https://github.com/xvxd4sh/apache2-docker/workflows/build/badge.svg)](https://github.com/xvxds4h/apache2-docker/actions/workflows/build.yml)
-[![CodeQL](https://github.com/xvxd4sh/megazord-http-redirector-docker/workflows/CodeQL/badge.svg)](https://github.com/xvxd4sh/apache2-docker/actions/workflows/codeql-analysis.yml)
-[![Known Vulnerabilities](https://snyk.io/test/github/xvxd4sh/megazord-http-redirector-docker/badge.svg)](https://snyk.io/test/github/xvxd4sh/apache2-docker)
+[![CodeQL](https://github.com/xvxd4sh/apache2-docker/workflows/CodeQL/badge.svg)](https://github.com/xvxd4sh/apache2-docker/actions/workflows/codeql-analysis.yml)
+[![Known Vulnerabilities](https://snyk.io/test/github/xvxd4sh/apache2-docker/badge.svg)](https://snyk.io/test/github/xvxd4sh/apache2-docker)
 
 ## Docker Image ##
 
@@ -30,22 +30,31 @@ docker run xvxd4sh/apache2:latest
     ---
     version: "3.7"
 
+    # This Docker composition file is used to build and test the container
+
+    secrets:
+      quote_txt:
+        file: ./src/secrets/quote.txt
+
     services:
       http-redirector:
+        # Run the container normally
         build:
+          # VERSION must be specified on the command line:
+          # e.g., --build-arg VERSION=0.0.1
           context: .
           dockerfile: Dockerfile
-      image: xvxd4sh/apache2
-      init: true
-      restart: "no"
-      ports:
-        - '80:80'
-        - '443:443'
-      volumes:
-        - ./src/templates/:/var/www/html
-        - ./src/uploads/:/var/www/uploads/
-        - ./src/config/apache2.conf:/etc/apache2/apache2.conf
-        - ./src/config/000-default.conf:/etc/apache2/sites-available/000-default.conf
+        image: xvxd4sh/apache2:latest
+        container_name: apache
+        init: true
+        restart: "no"
+        ports:
+         - '80:80'
+         - '443:443'
+       volumes:
+         - ./src/:/var/www/html
+          - ./src/config/apache2.conf:/etc/apache2/apache2.conf
+          - ./src/config/000-default.conf:/etc/apache2/sites-available/000-default.conf
     ```
 
 1. Start the container and detach:
@@ -80,7 +89,7 @@ environment variables.  See the
 
     services:
       example:
-        image: xvxd4sh/apache2
+        image: cisagov/example:0.0.1
         volumes:
           - type: bind
             source: <your_log_dir>
@@ -154,8 +163,7 @@ Hub for a list of all the supported tags.
 
 |  Mount point    | Purpose                            |
 |-----------------|------------------------------------|
-| `/src/uploads`  |  Payload uploads                   |
-| `/src/templates`|  webroot of the apache2 web server |
+| `/src/`         |  webroot                           |
 | `/src/config`   |  configuration of the server       |
 
 ## Ports ##
@@ -202,7 +210,7 @@ Build the image locally using this git repository as the [build context](https:/
 docker build \
   --build-arg VERSION=0.0.1 \
   --tag cisagov/example:0.0.1 \
-  https://github.com/xvxd4sh/apache2-docker.git#develop
+  https://github.com/cisagov/example.git#develop
 ```
 -->
 ## Cross-platform builds ##

@@ -23,15 +23,6 @@ services:
       - '80:80'
       - '443:443'
     volumes:
-      - ./src/templates/:/var/www/html
-      - ./src/uploads/:/var/www/uploads/
+      - ./src/:/var/www/html
       - ./src/config/apache2.conf:/etc/apache2/apache2.conf
       - ./src/config/000-default.conf:/etc/apache2/sites-available/000-default.conf
-      # command: sh -c "echo 'Apache started' && exec xvxd4sh/apache2"
-
-  apache-setup:
-    image: xvxd4sh/apache2:latest
-    depends_on:
-      - http-redirector
-    restart: "no"
-    entrypoint: ["bash", "-c", "echo 'Apache started' && exec httpd"]
