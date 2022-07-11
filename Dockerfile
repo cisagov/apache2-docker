@@ -1,6 +1,6 @@
 ARG VERSION=unspecified
 
-FROM xvxd4sh/apache2:latest
+FROM ubuntu/apache2:latest
 
 #ARG VERSION
 
