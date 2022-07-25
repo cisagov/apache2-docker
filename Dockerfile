@@ -19,8 +19,9 @@ FROM ubuntu/apache2:latest
 RUN apt-get clean && apt-get update && apt-get install -y apt-utils
 RUN apt-get install -y ssl-cert && \
 # TODO: test if this works on composition repo
-a2enmod rewrite proxy proxy_http headers cache && a2dismod -f deflate && \
-a2enmod ssl && a2ensite default-ssl.conf
+a2enmod rewrite proxy proxy_http
+#headers cache && a2dismod -f deflate && \
+#a2enmod ssl && a2ensite default-ssl.conf
 
 ENTRYPOINT ["/bin/bash -c", "echo 'Apache up and running'"]
 
