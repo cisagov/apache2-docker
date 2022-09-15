@@ -1,14 +1,14 @@
 # apache2-docker 🍂🐳 #
 
-[![GitHub Build Status](https://github.com/xvxd4sh/apache2-docker/workflows/build/badge.svg)](https://github.com/xvxds4h/apache2-docker/actions/workflows/build.yml)
-[![CodeQL](https://github.com/xvxd4sh/apache2-docker/workflows/CodeQL/badge.svg)](https://github.com/xvxd4sh/apache2-docker/actions/workflows/codeql-analysis.yml)
-[![Known Vulnerabilities](https://snyk.io/test/github/xvxd4sh/apache2-docker/badge.svg)](https://snyk.io/test/github/xvxd4sh/apache2-docker)
+[![GitHub Build Status](https://github.com/cisagov/apache2-docker/workflows/build/badge.svg)](https://github.com/cisagov/apache2-docker/actions/workflows/build.yml)
+[![CodeQL](https://github.com/cisagov/apache2-docker/workflows/CodeQL/badge.svg)](https://github.com/cisagov/apache2-docker/actions/workflows/codeql-analysis.yml)
+[![Known Vulnerabilities](https://snyk.io/test/github/cisagov/apache2-docker/badge.svg)](https://snyk.io/test/github/cisagov/apache2-docker)
 
 ## Docker Image ##
 
-[![Docker Pulls](https://img.shields.io/docker/pulls/xvxd4sh/apache2)](https://hub.docker.com/r/xvxd4sh/apache2)
-[![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/xvxd4sh/apache2)](https://hub.docker.com/r/xvxd4sh/apache2)
-[![Platforms](https://img.shields.io/badge/platforms-amd64%20%7C%20arm%2Fv6%20%7C%20arm%2Fv7%20%7C%20arm64%20%7C%20ppc64le%20%7C%20s390x-blue)](https://hub.docker.com/r/xvxd4sh/apache2/tags)
+[![Docker Pulls](https://img.shields.io/docker/pulls/cisagov/apache2)](https://hub.docker.com/r/cisagov/apache2)
+[![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/cisagov/apache2)](https://hub.docker.com/r/cisagov/apache2)
+[![Platforms](https://img.shields.io/badge/platforms-amd64%20%7C%20arm%2Fv6%20%7C%20arm%2Fv7%20%7C%20arm64%20%7C%20ppc64le%20%7C%20s390x-blue)](https://hub.docker.com/r/cisagov/apache2/tags)
 
 This is a docker project that is used to spin up an apache2 web server.
 
@@ -16,10 +16,10 @@ This is a docker project that is used to spin up an apache2 web server.
 
 ### Running with Docker ###
 
-To run the `xvxd4sh/apache2` image via Docker:
+To run the `cisagov/apache2` image via Docker:
 
 ```console
-docker run xvxd4sh/apache2:latest
+docker run cisagov/apache2:latest
 ```
 
 ### Running with Docker Compose ###
@@ -44,7 +44,7 @@ docker run xvxd4sh/apache2:latest
           # e.g., --build-arg VERSION=0.0.1
           context: .
           dockerfile: Dockerfile
-        image: xvxd4sh/apache2:latest
+        image: cisagov/apache2:latest
         container_name: apache
         init: true
         restart: "no"
@@ -133,7 +133,7 @@ environment variables.  See the
 1. Pull the new image:
 
     ```console
-    docker pull xvxd4sh/apache2:latest
+    docker pull cisagov/apache2:latest
     ```
 
 1. Recreate and run the container by following the [previous instructions](#running-with-docker).
@@ -223,7 +223,7 @@ Docker:
    or the command line:
 
     ```console
-    git clone https://github.com/xvxd4sh/apache2-docker.git
+    git clone https://github.com/cisagov/apache2-docker.git
     cd apache2-docker
     ```
 
@@ -240,9 +240,9 @@ Docker:
       --file Dockerfile-x \
       --platform linux/amd64 \
       --output type=docker \
-      --tag xvxd4sh/apache2:latest.
+      --tag cisagov/apache2:latest.
     ```
-<!--
+
 ## New repositories from a skeleton ##
 
 Please see our [Project Setup guide](https://github.com/cisagov/development-guide/tree/develop/project_setup)
@@ -254,7 +254,7 @@ new repository!
 
 We welcome contributions!  Please see [`CONTRIBUTING.md`](CONTRIBUTING.md) for
 details.
--->
+
 ## License ##
 
 This project is in the worldwide [public domain](LICENSE).

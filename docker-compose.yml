@@ -15,7 +15,7 @@ services:
       # e.g., --build-arg VERSION=0.0.1
       context: .
       dockerfile: Dockerfile
-    image: xvxd4sh/apache2:latest
+    image: cisagov/apache2:latest
     container_name: apache
     init: true
     restart: "no"
