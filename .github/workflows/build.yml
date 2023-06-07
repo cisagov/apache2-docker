@@ -61,7 +61,10 @@ jobs:
         uses: actions/setup-go@v4
 >>>>>>> 72503682a20fa77b887910ac6ec8556c77ce7d5e
         with:
-          go-version: "1.19"
+          # There is no expectation for actual Go code so we disable caching as
+          # it relies on the existence of a go.sum file.
+          cache: false
+          go-version: "1.20"
       - name: Lookup Go cache directory
         id: go-cache
         run: |
