@@ -16,6 +16,7 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+<<<<<<< HEAD
     ignore:
       - dependency-name: actions/cache
       - dependency-name: actions/checkout
@@ -28,6 +29,16 @@ updates:
       # - dependency-name: docker/login-action
       # - dependency-name: docker/setup-buildx-action
       # - dependency-name: docker/setup-qemu-action
+=======
+    # ignore:
+    #   # Managed by cisagov/skeleton-generic
+    #   - dependency-name: actions/cache
+    #   - dependency-name: actions/checkout
+    #   - dependency-name: actions/setup-go
+    #   - dependency-name: actions/setup-python
+    #   - dependency-name: hashicorp/setup-terraform
+    #   - dependency-name: mxschmitt/action-tmate
+>>>>>>> e803e1ac48ea53dc766d05935fbc38d2f4ad385e
 
   - package-ecosystem: "pip"
     directory: "/"
